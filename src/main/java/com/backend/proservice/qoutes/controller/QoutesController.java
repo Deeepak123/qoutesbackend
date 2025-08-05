@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.proservice.qoutes.entity.AuthorsEntity;
 import com.backend.proservice.qoutes.entity.QoutesContentEntity;
+import com.backend.proservice.qoutes.entity.StatsEntity;
 import com.backend.proservice.qoutes.entity.TopicsEntity;
 import com.backend.proservice.qoutes.service.QoutesService;
 import com.backend.proservice.qoutes.util.SecurityAPIs;
@@ -124,5 +125,18 @@ public class QoutesController {
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}
 	}
+	
+	@GetMapping("/getStats")
+    public ResponseEntity<List<StatsEntity>> getLast30DaysStats(HttpServletRequest httpReq) {
+		if(securityAPI.verifyToken(httpReq)) {
+			List<StatsEntity> responseList = qoutesSer.getStats();
+			if(responseList != null && !responseList.isEmpty()) {
+				return new ResponseEntity<List<StatsEntity>>(responseList, HttpStatus.OK);
+			}
+			return new ResponseEntity<List<StatsEntity>>(HttpStatus.NO_CONTENT);	
+		}else {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
+    }
 	
 }

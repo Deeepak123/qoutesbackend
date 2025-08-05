@@ -93,5 +93,10 @@ public class QoutesServiceImpl implements QoutesService {
 			statsRepo.flush();
 		}
 	}
+	
+	@Override
+	public List<StatsEntity> getStats() {
+		return statsRepo.findLast30DaysStats();
+	}
 
 }

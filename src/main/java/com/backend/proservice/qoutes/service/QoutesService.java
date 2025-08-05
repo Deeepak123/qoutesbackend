@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.backend.proservice.qoutes.entity.AuthorsEntity;
 import com.backend.proservice.qoutes.entity.QoutesContentEntity;
+import com.backend.proservice.qoutes.entity.StatsEntity;
 import com.backend.proservice.qoutes.entity.TopicsEntity;
 
 public interface QoutesService {
@@ -16,4 +17,5 @@ public interface QoutesService {
 	List<QoutesContentEntity> getQoutesByTopicID(String topicId);
 	List<QoutesContentEntity> searchGlobalInQoutes(String searchedKeyword);
 	void saveStats();
+	List<StatsEntity> getStats();
 }
